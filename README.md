@@ -11,6 +11,13 @@
 - Docker (用于生产环境部署)
 
 ## 快速开始
+windows powershell 环境：
+下载脚本
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/your-username/your-repo/main/setup.ps1" -OutFile "setup.ps1"
+
+macOS/Linux 环境:
+curl -o setup.sh https://raw.githubusercontent.com/your-username/your-repo/main/setup.sh
+
 
 ### 1. 环境初始化
 
