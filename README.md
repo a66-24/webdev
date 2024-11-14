@@ -45,22 +45,19 @@ chmod +x setup.sh
 npm run dev # 启动开发服务器
 npm run build # 构建项目
 npm run start # 启动本地预览
-代码检查
 ```
-
+代码检查
 ```bash
 npm run lint # ESLint 检查
 npm run lint:security # 安全规则检查
 npm run audit:deps # 依赖安全审计
 ```
-
 生产环境
 ```bash
 npm run build:prod # 生产环境构建（包含 Docker 构建）
 npm run start:prod # 启动生产服务（Docker）
 npm run stop:prod # 停止生产服务（Docker）
 ```
-
 性能分析
 ```bash
 npm run analyze # 分析打包大小
