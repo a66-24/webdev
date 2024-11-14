@@ -10,19 +10,18 @@
 - Homebrew
 - Docker (用于生产环境部署)
 
-## 快速开始
+## 快速开始 一键脚本
 
 windows powershell 环境：
-下载脚本
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.ps1" -OutFile "setup.ps1"
 
 ```powershell
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.ps1" -OutFile "setup.ps1"
 ```
 
 macOS/Linux 环境:
+```bash
 curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.sh
-
+```
 
 ### 1. 环境初始化
 
