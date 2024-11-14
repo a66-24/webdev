@@ -17,7 +17,7 @@
 - macOS (支持 Intel 和 M1 芯片)
 - Node.js 18+
 - npm 9.x
-- Homebrew
+- Homebrew (macOS 用于安装 Node.js)
 - Docker (用于生产环境部署)
 
 ## 快速开始
@@ -28,7 +28,7 @@
 <summary>Windows PowerShell</summary>
 
 ```powershell
-# 下载并执行（单行命令）
+# 下载并执行脚本
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.ps1" -OutFile "setup.ps1"; Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1
 ```
 </details>
@@ -37,6 +37,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main
 <summary>macOS/Linux</summary>
 
 ```bash
+# 下载并执行脚本
 curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev/main/setup.sh && chmod +x setup.sh && ./setup.sh
 ```
 </details>
