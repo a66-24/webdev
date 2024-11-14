@@ -28,7 +28,6 @@
 <summary>Windows PowerShell</summary>
 
 ```powershell
-# 下载并执行脚本
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.ps1" -OutFile "setup.ps1"; Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1
 ```
 </details>
@@ -37,7 +36,6 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main
 <summary>macOS/Linux</summary>
 
 ```bash
-# 下载并执行脚本
 curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev/main/setup.sh && chmod +x setup.sh && ./setup.sh
 ```
 </details>
