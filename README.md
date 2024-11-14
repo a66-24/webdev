@@ -10,7 +10,7 @@
 - Homebrew
 - Docker (用于生产环境部署)
 
-### 1. 环境初始化
+### 1 环境初始化
 
 windows powershell 环境：
 
@@ -21,7 +21,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a66-24/webdev.git/main
 
 macOS/Linux 环境:
 ```bash
-curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.sh && chmod +x setup.sh && ./setup.sh
+curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev/main/setup.sh && chmod +x setup.sh && ./setup.sh
 ```
 
 
@@ -32,7 +32,7 @@ curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.
 - 创建必要的配置文件
 - 设置开发环境
 
-### 2. 开发命令
+### 2 开发命令
 
 开发环境
 ```bash
@@ -61,7 +61,7 @@ npm run lighthouse # 运行 Lighthouse 测试
 npm run analyze:bundle # Webpack 包分析
 ```
 
-### 自动生成的配置文件
+### 3 自动生成的配置文件
 
 setup.sh 脚本会自动生成以下配置文件：
 
@@ -95,7 +95,7 @@ setup.sh 脚本会自动生成以下配置文件：
    - `nginx/Dockerfile` - NGINX Docker 配置
    - `docker-compose.yml` - Docker 编排配置
 
-### 依赖版本说明
+### 4 依赖版本说明
 
 #### 核心依赖
 - next: 13.5.6
@@ -103,45 +103,45 @@ setup.sh 脚本会自动生成以下配置文件：
 - react-dom: 18.2.0
 - typescript: 5.3.3
 
-### 2. 样式支持
+#### 样式支持
 - Tailwind CSS 3.4.1
 - Sass 1.70.0
 - PostCSS 8.4.33
 - Autoprefixer 10.4.17
 
-### 3. 国际化支持
+#### 国际化支持
 - next-i18next 15.2.0
 - i18next 23.7.16
 - react-i18next 14.0.1
 
-### 4. SEO 优化
+#### SEO 优化
 - next-seo 6.4.0
 - next-sitemap 4.2.3
 - schema-dts 1.1.2
 - PWA 支持 (next-pwa 5.6.0)
 
-### 5. 代码质量
+#### 代码质量
 - ESLint 8.56.0
 - Prettier 3.2.4
 - TypeScript 严格模式
 - Husky 提交钩子
 - Commitlint 提交消息规范
 
-### 6. 安全特性
+#### 安全特性
 - ESLint 安全规则
 - SonarJS 代码质量检查
 - 依赖安全审计
 - CSRF 保护
 - XSS 防护
 
-### 7. 性能优化
+#### 性能优化
 - 图片优化 (sharp)
 - 代码压缩 (terser)
 - CSS 优化 (cssnano)
 - 打包分析
 - 关键 CSS 提取
 
-### 8. 生产环境部署
+#### 生产环境部署
 - NGINX 配置
 - Docker 支持
 - SSL 配置
@@ -176,13 +176,13 @@ setup.sh 脚本会自动生成以下配置文件：
 
 ## 开发指南
 
-### 1. 代码规范
+### 1 代码规范
 - 使用 TypeScript 编写代码
 - 遵循 ESLint 规则
 - 使用 Prettier 格式化代码
 - 遵循 Git 提交消息规范
 
-### 环境变量
+### 2 环境变量
 
 项目使用以下环境变量：
 - `NODE_ENV`: 环境标识（development/production）
@@ -190,7 +190,7 @@ setup.sh 脚本会自动生成以下配置文件：
 - `NEXT_PUBLIC_SITE_URL`: 网站 URL
 - `SITE_URL`: 站点地图使用的 URL
 
-### NGINX 配置说明
+### 3 NGINX 配置说明
 
 1. **SSL 证书要求**
    - 证书文件: `nginx/certs/website.com_cert.pem`
@@ -210,18 +210,18 @@ setup.sh 脚本会自动生成以下配置文件：
    - CSRF 保护
    - HSTS 支持
 
-### 2. **基础组件开发**
+### 4 **基础组件开发**
    - 如何创建 TypeScript React 组件
    - 如何定义组件 Props 接口
    - 如何使用 FC (FunctionComponent) 类型
 
 
-### 3. **国际化功能**
+### 5 **国际化功能**
    - 如何使用 next-i18next
    - 如何获取翻译文本
    - 基本的翻译函数使用
 
-### 4. **SEO 优化**
+### 6 **SEO 优化**
    - 如何使用预配置的 SEO 组件
    - 如何设置页面元数据
    - 如何优化搜索引擎展示
@@ -229,12 +229,12 @@ setup.sh 脚本会自动生成以下配置文件：
 
 ## 生产环境部署
 
-### 1. SSL 证书配置
+### 1 SSL 证书配置
 将 SSL 证书放入 `nginx/certs` 目录：
 - website.com_cert.pem
 - website.com_key.pem
 
-### 2. 构建和部署
+### 2 构建和部署
 ```bash
 #构建生产环境
 npm run build:prod
@@ -244,7 +244,7 @@ npm run start:prod
 npm run stop:prod
 ```
 
-### 3. NGINX 配置说明
+### 3 NGINX 配置说明
 - 支持 HTTP/2
 - 自动 HTTP 到 HTTPS 重定向
 - 静态资源缓存策略
@@ -253,50 +253,50 @@ npm run stop:prod
 
 ## 性能优化
 
-### 1. 打包分析
+### 1 打包分析
 ```bash
 npm run analyze
 ```
 
-### 2. 图片优化
+### 2 图片优化
 - 使用 next/image 组件
 - 自动 WebP 转换
 - 响应式图片
 
-### 3. 代码分割
+### 3 代码分割
 - 自动代码分割
 - 动态导入
 - 预加载关键资源
 
 ## 安全措施
 
-### 1. 依赖审计
+### 1 依赖审计
 ```bash
 npm run audit:deps
 ```
 
-### 2. 代码安全检查
+### 2 代码安全检查
 ```bash
 npm run lint:security
 ```
 
 
-### 3. 提交检查
+### 3 提交检查
 - 预提交代码检查
 - 提交消息验证
 - 类型检查
 
 ## 常见问题
 
-### 1. 环境配置
+### 1 环境配置
 Q: Node.js 版本不匹配？
 A: 使用 nvm 安装正确版本：`nvm install 18`
 
-### 2. 构建问题
+### 2 构建问题
 Q: 构建失败？
 A: 检查依赖版本和配置文件
 
-### 3. 部署问题
+### 3 部署问题
 Q: NGINX 配置不生效？
 A: 检查证书路径和权限
 
