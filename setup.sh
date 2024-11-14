@@ -152,6 +152,24 @@ write_message "开始安装项目依赖..." "$BLUE"
 if [ ! -f package.json ]; then
     write_message "初始化 package.json..." "$GREEN"
     npm init -y
+    
+    # 使用 node 修改 package.json 添加必要的脚本
+    node -e '
+        const fs = require("fs");
+        const package = JSON.parse(fs.readFileSync("package.json"));
+        package.scripts = {
+            ...package.scripts,
+            "dev": "next dev",
+            "build": "next build",
+            "start": "next start",
+            "lint": "next lint",
+            "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+            "type-check": "tsc --noEmit",
+            "prepare": "husky install"
+        };
+        fs.writeFileSync("package.json", JSON.stringify(package, null, 2));
+    '
+    write_message "已添加项目相关脚本到 package.json" "$GREEN"
 fi
 
 # 定义依赖数组
@@ -160,7 +178,36 @@ declare -a DEPENDENCIES=(
     "next@14.0.3;"
     "react@18.2.0;"
     "react-dom@18.2.0;"
-    # ... 其他依赖项
+    
+    # 类型支持
+    "typescript@5.3.3;dev"
+    "@types/react@18.2.42;dev"
+    "@types/react-dom@18.2.17;dev"
+    "@types/node@20.10.4;dev"
+    
+    # UI 组件库
+    "antd@5.12.2;"
+    "@ant-design/icons@5.2.6;"
+    
+    # 样式支持
+    "sass@1.69.5;dev"
+    "tailwindcss@3.3.6;dev"
+    "postcss@8.4.32;dev"
+    "autoprefixer@10.4.16;dev"
+    
+    # 开发工具
+    "eslint@8.55.0;dev"
+    "eslint-config-next@14.0.3;dev"
+    "prettier@3.1.1;dev"
+    
+    # 状态管理
+    "zustand@4.4.7;"
+    
+    # 工具库
+    "lodash@4.17.21;"
+    "@types/lodash@4.14.202;dev"
+    "dayjs@1.11.10;"
+    "axios@1.6.2;"
 )
 
 # 计算总安装数量
@@ -176,7 +223,93 @@ for ((i=0; i<${#DEPENDENCIES[@]}; i++)); do
     install_npm_package "$package_name" "$type" "$progress" "$TOTAL_PACKAGES"
 done
 
-# ... 其余配置文件创建部分保持不变 ...
+# 创建 TypeScript 配置文件
+if [ ! -f tsconfig.json ]; then
+    write_message "创建 TypeScript 配置..." "$GREEN"
+    cat > tsconfig.json << EOF
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
+EOF
+fi
+
+# 创建 Tailwind 配置文件
+if [ ! -f tailwind.config.js ]; then
+    write_message "创建 Tailwind 配置..." "$GREEN"
+    cat > tailwind.config.js << EOF
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
+}
+EOF
+fi
+
+# 创建 PostCSS 配置文件
+if [ ! -f postcss.config.js ]; then
+    write_message "创建 PostCSS 配置..." "$GREEN"
+    cat > postcss.config.js << EOF
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+EOF
+fi
+
+# 创建 ESLint 配置文件
+if [ ! -f .eslintrc.json ]; then
+    write_message "创建 ESLint 配置..." "$GREEN"
+    cat > .eslintrc.json << EOF
+{
+  "extends": "next/core-web-vitals"
+}
+EOF
+fi
+
+# 创建 Prettier 配置文件
+if [ ! -f .prettierrc ]; then
+    write_message "创建 Prettier 配置..." "$GREEN"
+    cat > .prettierrc << EOF
+{
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "tabWidth": 2
+}
+EOF
+fi
 
 write_message "安装完成！" "$BLUE"
 write_message "您现在可以使用 'npm run dev' 启动开发环境了" "$GREEN" 
