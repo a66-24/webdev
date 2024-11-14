@@ -26,40 +26,49 @@ curl -o setup.sh https://raw.githubusercontent.com/a66-24/webdev.git/main/setup.
 ### 1. 环境初始化
 
 运行安装脚本：
-bash
+```bash
 chmod +x setup.sh
 ./setup.sh
-
+```
 
 此脚本会自动：
-- 安装/检查 Homebrew
+- 安装/检查 前置
 - 安装/检查 Node.js
 - 配置项目依赖和工具
 - 创建必要的配置文件
 - 设置开发环境
 
 ### 2. 开发命令
-bash
+
 开发环境
+```bash
 npm run dev # 启动开发服务器
 npm run build # 构建项目
 npm run start # 启动本地预览
 代码检查
+```
+
+```bash
 npm run lint # ESLint 检查
 npm run lint:security # 安全规则检查
 npm run audit:deps # 依赖安全审计
-生产环境
+```
 
+生产环境
+```bash
 npm run build:prod # 生产环境构建（包含 Docker 构建）
 npm run start:prod # 启动生产服务（Docker）
 npm run stop:prod # 停止生产服务（Docker）
+```
+
 性能分析
+```bash
 npm run analyze # 分析打包大小
 npm run build:analyze # 构建并分析
 npm run build:profile # 性能分析构建
 npm run lighthouse # 运行 Lighthouse 测试
 npm run analyze:bundle # Webpack 包分析
-
+```
 
 ### 自动生成的配置文件
 
@@ -149,6 +158,7 @@ setup.sh 脚本会自动生成以下配置文件：
 - Gzip 压缩
 
 ## 目录结构
+```bash
 .
 ├── components/ # React 组件
 ├── pages/ # 页面文件
@@ -169,6 +179,8 @@ setup.sh 脚本会自动生成以下配置文件：
 ├── tailwind.config.js # Tailwind 配置
 ├── docker-compose.yml # Docker 编排配置
 └── package.json # 项目配置
+```
+
 
 
 ## 开发指南
@@ -232,14 +244,14 @@ setup.sh 脚本会自动生成以下配置文件：
 - website.com_key.pem
 
 ### 2. 构建和部署
-bash
-构建生产环境
+```bash
+#构建生产环境
 npm run build:prod
-启动服务
+#启动服务
 npm run start:prod
-停止服务
+#停止服务
 npm run stop:prod
-
+```
 
 ### 3. NGINX 配置说明
 - 支持 HTTP/2
@@ -251,8 +263,9 @@ npm run stop:prod
 ## 性能优化
 
 ### 1. 打包分析
-bash
+```bash
 npm run analyze
+```
 
 ### 2. 图片优化
 - 使用 next/image 组件
@@ -267,13 +280,14 @@ npm run analyze
 ## 安全措施
 
 ### 1. 依赖审计
-bash
+```bash
 npm run audit:deps
-
+```
 
 ### 2. 代码安全检查
-bash
+```bash
 npm run lint:security
+```
 
 
 ### 3. 提交检查
@@ -306,21 +320,3 @@ A: 检查证书路径和权限
 ## 许可证
 
 [MIT License](LICENSE)
-
-这个完整的 README.md 包含了：
-详细的项目说明
-完整的功能列表
-3. 清晰的使用指南
-4. 开发和部署说明
-性能优化建议
-常见问题解答
-贡献指南
-建议根据实际项目需求调整内容。
-
-## 命令说明
-
-### 开发环境命令
-
-## 开发示例
-
-### 1. 基础组件开发
