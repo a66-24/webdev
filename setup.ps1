@@ -401,4 +401,41 @@ git-tag-version=false
 '@ | Out-File -FilePath .npmrc -Encoding UTF8
 
 Write-ColorOutput "Installation complete!" "Blue"
-Write-ColorOutput "You can now start the development server with 'npm run dev'" "Green" 
+Write-ColorOutput "You can now start the development server with 'npm run dev'" "Green"
+
+# 创建基本的项目结构
+Write-ColorOutput "Creating project basic directory structure..." "Green"
+New-Item -ItemType Directory -Path "src/app" -Force
+
+# 创建 app/layout.tsx
+@'
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+'@ | Out-File -FilePath "src/app/layout.tsx" -Encoding UTF8
+
+# 创建 app/page.tsx
+@'
+export default function Home() {
+  return (
+    <main>
+      <h1>Welcome to Next.js!</h1>
+    </main>
+  )
+}
+'@ | Out-File -FilePath "src/app/page.tsx" -Encoding UTF8
+
+# 创建全局样式文件
+@'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+'@ | Out-File -FilePath "src/app/globals.css" -Encoding UTF8 

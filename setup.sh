@@ -179,7 +179,7 @@ declare -a DEPENDENCIES=(
     "react@18.2.0;"
     "react-dom@18.2.0;"
     
-    # 类型支持
+    # 类���支持
     "typescript@5.3.3;dev"
     "@types/react@18.2.42;dev"
     "@types/react-dom@18.2.17;dev"
@@ -246,9 +246,14 @@ if [ ! -f tsconfig.json ]; then
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
 EOF
@@ -312,4 +317,41 @@ EOF
 fi
 
 write_message "安装完成！" "$BLUE"
-write_message "您现在可以使用 'npm run dev' 启动开发环境了" "$GREEN" 
+write_message "您现在可以使用 'npm run dev' 启动开发环境了" "$GREEN"
+
+# 创建基本的项目结构
+mkdir -p src/app
+write_message "创建项目基本目录结构..." "$GREEN"
+
+# 创建 app/layout.tsx
+cat > src/app/layout.tsx << EOF
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
+}
+EOF
+
+# 创建 app/page.tsx
+cat > src/app/page.tsx << EOF
+export default function Home() {
+  return (
+    <main>
+      <h1>Welcome to Next.js!</h1>
+    </main>
+  )
+}
+EOF
+
+# 创建全局样式文件
+cat > src/app/globals.css << EOF
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+EOF 
